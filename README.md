@@ -136,4 +136,25 @@ Now the Kube Hunter dashboard will be rendered with neccessary visualisations st
 ![p12](https://github.com/Nishanth-developer/HPE-CTY-HPC-Kube-Hunter-Enhancer/assets/72375481/01813bdd-c5b1-4b4a-8246-ba176c120965)
 
 
+## Optional
+
+If you want a Kube Hunter security dashboard to view all threats found, information about them and their remediations, instead of the above grafana visualisation, then download the folder named Kube Hunter web in this repository. 
+
+Then in the same working dir, execute
+
+```bash
+  python3 hunt.py
+```
+
+On successful execution it will prompt you to visit localhost:5000 to view the dashboard. Visit localhost:5000 and the Kube Hunter dashboard will be rendered.
+
+![p13](https://github.com/Nishanth-developer/HPE-CTY-HPC-Kube-Hunter-Enhancer/assets/72375481/e515c67f-6f9d-4c22-8910-6e5fec721ef1)
+
+Click the view button to know more information about the particular threat
+
+![p14](https://github.com/Nishanth-developer/HPE-CTY-HPC-Kube-Hunter-Enhancer/assets/72375481/1baf796f-bf5e-40a7-9823-030409ab1dae)
+
+To know about the remediation for the particular threat, click the solutions button
+
+![p15](https://github.com/Nishanth-developer/HPE-CTY-HPC-Kube-Hunter-Enhancer/assets/72375481/e640f110-4612-4576-aeab-e5553aa2435b)
 
