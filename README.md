@@ -116,7 +116,24 @@ Click save and test. If you get a success message then the plugin is configured 
 
 #### Importing dashboard
 
+Go to the upper left section named dashboards, and navigate to the import dashboard section
 
+![p9](https://github.com/Nishanth-developer/HPE-CTY-HPC-Kube-Hunter-Enhancer/assets/72375481/285c4338-61f3-4e7e-bc5a-64343dcfa9d5)
+
+Now a window will appear like this, prompting you to import a json file. Import the json file available in this repo named Kube-Hunter-Dashboard.json.
+
+```bash
+  https://github.com/Nishanth-developer/HPE-CTY-HPC-Kube-Hunter-Enhancer/blob/main/Kube-Hunter-Dashboard.json
+```
+![p10](https://github.com/Nishanth-developer/HPE-CTY-HPC-Kube-Hunter-Enhancer/assets/72375481/df6e2001-4a2b-4024-ab5d-fd4f3426fdbd)
+
+After importing the json, select JSON API from datasources dropdown and click import.
+
+![p11](https://github.com/Nishanth-developer/HPE-CTY-HPC-Kube-Hunter-Enhancer/assets/72375481/1f176768-01fc-49dd-81fa-71ba124b2dea)
+
+Now the Kube Hunter dashboard will be rendered with neccessary visualisations starting with the master table.
+
+![p12](https://github.com/Nishanth-developer/HPE-CTY-HPC-Kube-Hunter-Enhancer/assets/72375481/01813bdd-c5b1-4b4a-8246-ba176c120965)
 
 
 
