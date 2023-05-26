@@ -96,4 +96,27 @@ Now our goal is to visualise the results of the kube-hunter scans in grafana das
 
 #### Plugin activation
 
-Navigate to 
+On the lower left corner, click the Configurations wheel and navigate to Configuration > Plugins
+
+![p5](https://github.com/Nishanth-developer/HPE-CTY-HPC-Kube-Hunter-Enhancer/assets/72375481/78b2f944-5cfe-4808-a4f5-5ad931931ba7)
+
+Now in the search bar, enter json and click 'JSON API'.
+
+![p6](https://github.com/Nishanth-developer/HPE-CTY-HPC-Kube-Hunter-Enhancer/assets/72375481/b3e689d9-47fa-43dc-9bb8-4fe2c4dc1990)
+
+Click 'Create a JSON API Data Source'.
+
+![p7](https://github.com/Nishanth-developer/HPE-CTY-HPC-Kube-Hunter-Enhancer/assets/72375481/9089452d-b8e2-4300-825a-7c645f2958fd)
+
+Now in the HTTP > URL field, enter your unique npoint.io json bin link.
+
+![p8](https://github.com/Nishanth-developer/HPE-CTY-HPC-Kube-Hunter-Enhancer/assets/72375481/3122af89-7b8b-40f8-9597-408ab7640656)
+
+Click save and test. If you get a success message then the plugin is configured properly.
+
+#### Importing dashboard
+
+
+
+
+
