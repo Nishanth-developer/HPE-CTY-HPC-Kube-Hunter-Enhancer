@@ -1,0 +1,7 @@
+beautifulsoup4
+kubernetes
+lxml
+prettytable
+requests
+textwrap3
+tqdm

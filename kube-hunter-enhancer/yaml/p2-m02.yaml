@@ -1,0 +1,21 @@
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kube-hunter-2
+spec:
+  template:
+    metadata:
+      labels:
+        app: kube-hunter
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: p2-m02
+      containers:
+        - name: kube-hunter
+          image: 'aquasec/kube-hunter:0.6.8'
+          command:
+            - kube-hunter
+          args:
+            - '--pod'
+      restartPolicy: Never
