@@ -1,0 +1,174 @@
+Logs for kube-hunter-1-sbnbg on node p2:
+2023-05-24 05:49:10,592 INFO kube_hunter.modules.report.collector Started hunting
+2023-05-24 05:49:10,592 INFO kube_hunter.modules.report.collector Discovering Open Kubernetes Services
+2023-05-24 05:49:10,598 INFO kube_hunter.modules.report.collector Found vulnerability "Read access to pod's service account token" in Local to Pod (kube-hunter-1-sbnbg)
+2023-05-24 05:49:10,598 INFO kube_hunter.modules.report.collector Found vulnerability "CAP_NET_RAW Enabled" in Local to Pod (kube-hunter-1-sbnbg)
+2023-05-24 05:49:10,600 INFO kube_hunter.modules.report.collector Found vulnerability "Access to pod's secrets" in Local to Pod (kube-hunter-1-sbnbg)
+2023-05-24 05:49:25,639 INFO kube_hunter.modules.report.collector Found open service "Kubelet API" at 10.244.0.1:10250
+2023-05-24 05:49:33,173 INFO kube_hunter.modules.report.collector Found open service "API Server" at 10.96.0.1:443
+2023-05-24 05:49:33,197 INFO kube_hunter.modules.report.collector Found vulnerability "Access to API using service account token" in 10.96.0.1:443
+2023-05-24 05:49:33,206 INFO kube_hunter.modules.report.collector Found vulnerability "K8s Version Disclosure" in 10.96.0.1:443
+
+Nodes
++-------------+------------+
+| TYPE        | LOCATION   |
++-------------+------------+
+| Node/Master | 10.244.0.1 |
++-------------+------------+
+| Node/Master | 10.96.0.1  |
++-------------+------------+
+
+Detected Services
++-------------+------------------+----------------------+
+| SERVICE     | LOCATION         | DESCRIPTION          |
++-------------+------------------+----------------------+
+| Kubelet API | 10.244.0.1:10250 | The Kubelet is the   |
+|             |                  | main component in    |
+|             |                  | every Node, all pod  |
+|             |                  | operations goes      |
+|             |                  | through the kubelet  |
++-------------+------------------+----------------------+
+| API Server  | 10.96.0.1:443    | The API server is in |
+|             |                  | charge of all        |
+|             |                  | operations on the    |
+|             |                  | cluster.             |
++-------------+------------------+----------------------+
+
+Vulnerabilities
+For further information about a vulnerability, search its ID in: 
+https://avd.aquasec.com/
++--------+----------------------+----------------------+----------------------+----------------------+----------------------+
+| ID     | LOCATION             | MITRE CATEGORY       | VULNERABILITY        | DESCRIPTION          | EVIDENCE             |
++--------+----------------------+----------------------+----------------------+----------------------+----------------------+
+| None   | Local to Pod (kube-  | Lateral Movement //  | CAP_NET_RAW Enabled  | CAP_NET_RAW is       |                      |
+|        | hunter-1-sbnbg)      | ARP poisoning and IP |                      | enabled by default   |                      |
+|        |                      | spoofing             |                      | for pods.            |                      |
+|        |                      |                      |                      |     If an attacker   |                      |
+|        |                      |                      |                      | manages to           |                      |
+|        |                      |                      |                      | compromise a pod,    |                      |
+|        |                      |                      |                      |     they could       |                      |
+|        |                      |                      |                      | potentially take     |                      |
+|        |                      |                      |                      | advantage of this    |                      |
+|        |                      |                      |                      | capability to        |                      |
+|        |                      |                      |                      | perform network      |                      |
+|        |                      |                      |                      |     attacks on other |                      |
+|        |                      |                      |                      | pods running on the  |                      |
+|        |                      |                      |                      | same node            |                      |
++--------+----------------------+----------------------+----------------------+----------------------+----------------------+
+| KHV002 | 10.96.0.1:443        | Initial Access //    | K8s Version          | The kubernetes       | v1.26.1              |
+|        |                      | Exposed sensitive    | Disclosure           | version could be     |                      |
+|        |                      | interfaces           |                      | obtained from the    |                      |
+|        |                      |                      |                      | /version endpoint    |                      |
++--------+----------------------+----------------------+----------------------+----------------------+----------------------+
+| KHV005 | 10.96.0.1:443        | Discovery // Access  | Access to API using  | The API Server port  | b'{"kind":"APIVersio |
+|        |                      | the K8S API Server   | service account      | is accessible.       | ns","versions":["v1" |
+|        |                      |                      | token                |     Depending on     | ],"serverAddressByCl |
+|        |                      |                      |                      | your RBAC settings   | ientCIDRs":[{"client |
+|        |                      |                      |                      | this could expose    | CIDR":"0.0.0.0/0","s |
+|        |                      |                      |                      | access to or control | ...                  |
+|        |                      |                      |                      | of your cluster.     |                      |
++--------+----------------------+----------------------+----------------------+----------------------+----------------------+
+| None   | Local to Pod (kube-  | Credential Access // | Access to pod's      | Accessing the pod's  | ['/var/run/secrets/k |
+|        | hunter-1-sbnbg)      | Access container     | secrets              | secrets within a     | ubernetes.io/service |
+|        |                      | service account      |                      | compromised pod      | account/namespace',  |
+|        |                      |                      |                      | might disclose       | '/var/run/secrets/ku |
+|        |                      |                      |                      | valuable data to a   | bernetes.io/servicea |
+|        |                      |                      |                      | potential attacker   | ...                  |
++--------+----------------------+----------------------+----------------------+----------------------+----------------------+
+| KHV050 | Local to Pod (kube-  | Credential Access // | Read access to pod's | Accessing the pod    | eyJhbGciOiJSUzI1NiIs |
+|        | hunter-1-sbnbg)      | Access container     | service account      | service account      | ImtpZCI6ImhWcGI3RmUt |
+|        |                      | service account      | token                | token gives an       | dmhERFRpZnVtY1oyUWhD |
+|        |                      |                      |                      | attacker the option  | dUZnaGJlVUk1Q2hCTklz |
+|        |                      |                      |                      | to use the server    | VWpGbkkifQ.eyJhdWQiO |
+|        |                      |                      |                      | API                  | ...                  |
++--------+----------------------+----------------------+----------------------+----------------------+----------------------+
+
+
+
+Logs for kube-hunter-2-vxvgg on node p2:
+2023-05-24 05:49:15,163 INFO kube_hunter.modules.report.collector Started hunting
+2023-05-24 05:49:15,163 INFO kube_hunter.modules.report.collector Discovering Open Kubernetes Services
+2023-05-24 05:49:15,167 INFO kube_hunter.modules.report.collector Found vulnerability "Read access to pod's service account token" in Local to Pod (kube-hunter-2-vxvgg)
+2023-05-24 05:49:15,167 INFO kube_hunter.modules.report.collector Found vulnerability "CAP_NET_RAW Enabled" in Local to Pod (kube-hunter-2-vxvgg)
+2023-05-24 05:49:15,169 INFO kube_hunter.modules.report.collector Found vulnerability "Access to pod's secrets" in Local to Pod (kube-hunter-2-vxvgg)
+2023-05-24 05:49:30,321 INFO kube_hunter.modules.report.collector Found open service "Kubelet API" at 10.244.1.1:10250
+2023-05-24 05:49:37,758 INFO kube_hunter.modules.report.collector Found open service "API Server" at 10.96.0.1:443
+2023-05-24 05:49:37,786 INFO kube_hunter.modules.report.collector Found vulnerability "Access to API using service account token" in 10.96.0.1:443
+2023-05-24 05:49:37,788 INFO kube_hunter.modules.report.collector Found vulnerability "K8s Version Disclosure" in 10.96.0.1:443
+
+Nodes
++-------------+------------+
+| TYPE        | LOCATION   |
++-------------+------------+
+| Node/Master | 10.244.1.1 |
++-------------+------------+
+| Node/Master | 10.96.0.1  |
++-------------+------------+
+
+Detected Services
++-------------+------------------+----------------------+
+| SERVICE     | LOCATION         | DESCRIPTION          |
++-------------+------------------+----------------------+
+| Kubelet API | 10.244.1.1:10250 | The Kubelet is the   |
+|             |                  | main component in    |
+|             |                  | every Node, all pod  |
+|             |                  | operations goes      |
+|             |                  | through the kubelet  |
++-------------+------------------+----------------------+
+| API Server  | 10.96.0.1:443    | The API server is in |
+|             |                  | charge of all        |
+|             |                  | operations on the    |
+|             |                  | cluster.             |
++-------------+------------------+----------------------+
+
+Vulnerabilities
+For further information about a vulnerability, search its ID in: 
+https://avd.aquasec.com/
++--------+----------------------+----------------------+----------------------+----------------------+----------------------+
+| ID     | LOCATION             | MITRE CATEGORY       | VULNERABILITY        | DESCRIPTION          | EVIDENCE             |
++--------+----------------------+----------------------+----------------------+----------------------+----------------------+
+| None   | Local to Pod (kube-  | Lateral Movement //  | CAP_NET_RAW Enabled  | CAP_NET_RAW is       |                      |
+|        | hunter-2-vxvgg)      | ARP poisoning and IP |                      | enabled by default   |                      |
+|        |                      | spoofing             |                      | for pods.            |                      |
+|        |                      |                      |                      |     If an attacker   |                      |
+|        |                      |                      |                      | manages to           |                      |
+|        |                      |                      |                      | compromise a pod,    |                      |
+|        |                      |                      |                      |     they could       |                      |
+|        |                      |                      |                      | potentially take     |                      |
+|        |                      |                      |                      | advantage of this    |                      |
+|        |                      |                      |                      | capability to        |                      |
+|        |                      |                      |                      | perform network      |                      |
+|        |                      |                      |                      |     attacks on other |                      |
+|        |                      |                      |                      | pods running on the  |                      |
+|        |                      |                      |                      | same node            |                      |
++--------+----------------------+----------------------+----------------------+----------------------+----------------------+
+| KHV002 | 10.96.0.1:443        | Initial Access //    | K8s Version          | The kubernetes       | v1.26.1              |
+|        |                      | Exposed sensitive    | Disclosure           | version could be     |                      |
+|        |                      | interfaces           |                      | obtained from the    |                      |
+|        |                      |                      |                      | /version endpoint    |                      |
++--------+----------------------+----------------------+----------------------+----------------------+----------------------+
+| KHV005 | 10.96.0.1:443        | Discovery // Access  | Access to API using  | The API Server port  | b'{"kind":"APIVersio |
+|        |                      | the K8S API Server   | service account      | is accessible.       | ns","versions":["v1" |
+|        |                      |                      | token                |     Depending on     | ],"serverAddressByCl |
+|        |                      |                      |                      | your RBAC settings   | ientCIDRs":[{"client |
+|        |                      |                      |                      | this could expose    | CIDR":"0.0.0.0/0","s |
+|        |                      |                      |                      | access to or control | ...                  |
+|        |                      |                      |                      | of your cluster.     |                      |
++--------+----------------------+----------------------+----------------------+----------------------+----------------------+
+| None   | Local to Pod (kube-  | Credential Access // | Access to pod's      | Accessing the pod's  | ['/var/run/secrets/k |
+|        | hunter-2-vxvgg)      | Access container     | secrets              | secrets within a     | ubernetes.io/service |
+|        |                      | service account      |                      | compromised pod      | account/namespace',  |
+|        |                      |                      |                      | might disclose       | '/var/run/secrets/ku |
+|        |                      |                      |                      | valuable data to a   | bernetes.io/servicea |
+|        |                      |                      |                      | potential attacker   | ...                  |
++--------+----------------------+----------------------+----------------------+----------------------+----------------------+
+| KHV050 | Local to Pod (kube-  | Credential Access // | Read access to pod's | Accessing the pod    | eyJhbGciOiJSUzI1NiIs |
+|        | hunter-2-vxvgg)      | Access container     | service account      | service account      | ImtpZCI6ImhWcGI3RmUt |
+|        |                      | service account      | token                | token gives an       | dmhERFRpZnVtY1oyUWhD |
+|        |                      |                      |                      | attacker the option  | dUZnaGJlVUk1Q2hCTklz |
+|        |                      |                      |                      | to use the server    | VWpGbkkifQ.eyJhdWQiO |
+|        |                      |                      |                      | API                  | ...                  |
++--------+----------------------+----------------------+----------------------+----------------------+----------------------+
+
+
+
